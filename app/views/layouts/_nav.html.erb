@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-warning mb-3">
+  <a class="navbar-brand" href="/">ホビーショップNS</a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <%= link_to("カート", "#", {class: "nav-link"}) %>
+    </li>
+    <li class="nav-item">
+      <%= link_to("購入履歴", "#", {class: "nav-link"}) %>
+    </li>
+    <li class="nav-item">
+      <%= link_to("ログイン", "#", {class: "nav-link"}) %>
+      <!--
+      <div class="nav-item dropdown">
+      <button type="button" class="btn btn-secondary bg-warning btn-outline-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      カテゴリ
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">メニュー1</a>
+    <a class="dropdown-item" href="#">メニュー2</a>
+    <a class="dropdown-item" href="#">メニュー3</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">その他リンク</a>
+  </div>
+</div>-->
+</li>
+</ul>
+<div class="ncollapse navbar-collapse justify-content-end">
+<div class="form-group form-inline">
+  <label for="exampleSelect1exampleFormControlSelect1">カテゴリ :　</label>
+  <select class="form-control" id="exampleFormControlSelect1">
+    <option>ゲームソフト</option>
+    <option>CD/DVD</option>
+  </select>
+</div>
+<form class="form-inline">
+  <input class="form-control mr-sm-1" type="search">
+  <button class="btn btn-primary" type="submit">検索</button>
+</form>
+</div>
+</nav>
