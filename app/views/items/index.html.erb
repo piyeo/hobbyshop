@@ -1,5 +1,9 @@
+<%= paginate @items %>
 <% @items.each do |item| %>
-  <%= item.name %>
-  <%= item.body %>
+  <%= link_to item.name, item %>
+  <%= item.price %>
+  <%= item.stock %>
+  <%= item.release %>
   <hr>
 <% end %>
+<%= paginate @items %>

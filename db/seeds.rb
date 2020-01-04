@@ -1,6 +1,6 @@
 Category.create(name: "ゲームソフト")
 
-10.times do |n|
+50.times do |n|
   category_id = 1
   name  = Faker::Name.name
   body = Faker::Lorem.paragraphs
