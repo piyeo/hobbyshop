@@ -1,3 +1,8 @@
+User.create(name: "田中太郎", nickname: "Taro", sex: 1,phone: "09012345678",
+  email: "example@gmail.com",birthday: "1999-12-17",postcode:"123-4567",
+  address: "神奈川県茅ヶ崎市香川2丁目6番地"
+)
+
 Category.create(name: "ゲームソフト")
 
 50.times do |n|
