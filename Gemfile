@@ -4,7 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
-gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'rails-i18n'
 gem 'email_validator', '~> 1.6'
@@ -35,7 +34,7 @@ gem 'mini_racer', platforms: :ruby
 gem 'jbuilder', '~> 2.5'
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
