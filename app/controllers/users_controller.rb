@@ -26,35 +26,20 @@ class UsersController < ApplicationController
   end
 
   def update
-  @user = User.find(params[:id])
-  if @user.update_attributes(user_params)
-    flash[:success] = "アカウント情報を変更しました。"
-    redirect_to @user
-  else
-    render 'edit'
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "アカウント情報を変更しました。"
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
-end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :nickname, :sex, :phone, :email, :birthday,
       :postcode, :address, :password, :password_confirmation)
-  end
-
-#before_action
-
-  def login_user
-    unless is_login?
-      store_location
-      flash[:danger] = "ログインしてください。"
-      redirect_to login_url
-    end
-  end
-
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
   end
 
 end

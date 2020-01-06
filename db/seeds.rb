@@ -3,6 +3,8 @@ User.create(name: "田中太郎", nickname: "Taro", sex: 1,phone: "09012345678",
   address: "神奈川県茅ヶ崎市香川2丁目6番地", password: "foobar", password_confirmation: "foobar"
 )
 
+Admin.create(name: "admin", password: "123456", password_confirmation: "123456")
+
 Category.create(name: "ゲームソフト")
 
 50.times do |n|

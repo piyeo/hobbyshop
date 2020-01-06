@@ -1,14 +1,22 @@
 <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-warning mb-3">
   <a class="navbar-brand" href="/">ホビーショップNS</a>
   <ul class="navbar-nav">
+    <%if is_admin?%>
+      <li class="nav-item active">
+        <%= link_to("管理ページ", :admin_root, {class: "nav-link"}) %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to "ログアウト", logout_admin_path ,method: :delete, class: "nav-link" %>
+      </li>
+    <%else%>
     <% if is_login? %>
     <div class="nav-item dropdown">
       <button type="button" class="btn btn-secondary bg-warning btn-outline-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%=current_user.name + "さん"%>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <%= link_to("マイページ", current_user, {class: "dropdown-item"}) %>
-        <%= link_to("ユーザー設定", edit_user_path(current_user), {class: "dropdown-item"}) %>
+        <%= link_to("マイページ", :account, {class: "dropdown-item"}) %>
+        <%= link_to("ユーザー設定", :edit_account, {class: "dropdown-item"}) %>
         <%= link_to("注文履歴", "#", {class: "dropdown-item"}) %>
         <%= link_to("レビュー", "#", {class: "dropdown-item"}) %>
         <div class="dropdown-divider"></div>
@@ -20,10 +28,11 @@
     <li class="nav-item active">
       <%= link_to("ログイン", login_path, {class: "nav-link"}) %>
     </li>
-      <% end %>
+    <% end %>
     <li class="nav-item active">
-      <%= link_to("カート", "#", {class: "nav-link"}) %>
+      <%= link_to("カート", :admin_root, {class: "nav-link"}) %>
     </li>
+    <%end%>
   </ul>
   <div class="ncollapse navbar-collapse justify-content-end">
     <div class="form-group form-inline">

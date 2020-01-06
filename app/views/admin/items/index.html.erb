@@ -1,0 +1,11 @@
+<%= link_to "新規登録", :new_admin_item%>
+<%= paginate @items %>
+<% @items.each do |item| %>
+  <%= link_to item.name, [:admin, item] %>
+  <%= item.price %>
+  <%= item.stock %>
+  <%= item.release %>
+  <%= link_to "編集", [:edit, :admin, item] %>
+  <hr>
+<% end %>
+<%= paginate @items %>

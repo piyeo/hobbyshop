@@ -1,5 +1,15 @@
 module SessionsHelper
 
+  def current_admin
+    if session[:admin_id]
+      @current_admin = @current_admin || Admin.find_by(id: session[:admin_id])
+    end
+  end
+
+  def is_admin?
+    !current_admin.nil?
+  end
+
   def log_in(user)
     session[:user_id] = user.id
   end
