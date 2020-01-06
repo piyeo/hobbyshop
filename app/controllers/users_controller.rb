@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :login_user, only: [:edit, :update]
+  before_action :login_user, only: [:edit, :update,:destroy]
   before_action :correct_user,   only: [:edit, :update]
 
   def new
@@ -33,6 +33,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "退会しました。"
+    redirect_to root_url
   end
 
   private

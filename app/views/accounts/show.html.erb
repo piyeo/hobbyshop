@@ -3,3 +3,6 @@
 <h1><%= @page_title %></h1>
 
 <%= render "users/body" %>
+
+<%= link_to "退会する", @user, method: :delete,
+                                  data: { confirm: "本当によろしいですか？(退会するとアカウント情報、注文履歴などすべての情報が削除されます。)" } %>
