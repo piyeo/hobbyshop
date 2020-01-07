@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :current_cart
+
   include SessionsHelper
 
   def login_admin
@@ -15,6 +17,12 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+    def not_login_user
+      unless !is_login?
+        redirect_to root_url
+      end
+    end
 
   def correct_user
     @user = User.find(params[:id])

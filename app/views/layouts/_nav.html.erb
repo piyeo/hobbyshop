@@ -1,6 +1,19 @@
 <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-warning mb-3">
   <a class="navbar-brand" href="/">ホビーショップNS</a>
-  <ul class="navbar-nav">
+  <div class="navbar-nav">
+    <div class="form-group form-inline">
+      <label for="exampleSelect1exampleFormControlSelect1">カテゴリ :　</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>ゲームソフト</option>
+        <option>CD/DVD</option>
+      </select>
+    </div>
+    <form class="form-inline">
+      <input class="form-control mr-sm-1" type="search">
+      <button class="btn btn-primary" type="submit">検索</button>
+    </form>
+  </div>
+  <ul class="ncollapse navbar-collapse justify-content-end navbar-nav">
     <%if is_admin?%>
       <li class="nav-item active">
         <%= link_to("管理ページ", :admin_root, {class: "nav-link"}) %>
@@ -9,6 +22,9 @@
         <%= link_to "ログアウト", logout_admin_path ,method: :delete, class: "nav-link" %>
       </li>
     <%else%>
+    <li class="nav-item active">
+      <%= link_to "カート(#{session[:cart_item].count})",:cart, class: "nav-link" %>
+    </li>
     <% if is_login? %>
     <div class="nav-item dropdown">
       <button type="button" class="btn btn-secondary bg-warning btn-outline-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -29,22 +45,6 @@
       <%= link_to("ログイン", login_path, {class: "nav-link"}) %>
     </li>
     <% end %>
-    <li class="nav-item active">
-      <%= link_to("カート", "#", {class: "nav-link"}) %>
-    </li>
     <%end%>
   </ul>
-  <div class="ncollapse navbar-collapse justify-content-end">
-    <div class="form-group form-inline">
-      <label for="exampleSelect1exampleFormControlSelect1">カテゴリ :　</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>ゲームソフト</option>
-        <option>CD/DVD</option>
-      </select>
-    </div>
-    <form class="form-inline">
-      <input class="form-control mr-sm-1" type="search">
-      <button class="btn btn-primary" type="submit">検索</button>
-    </form>
-  </div>
 </nav>

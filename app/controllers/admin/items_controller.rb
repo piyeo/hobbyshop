@@ -1,4 +1,6 @@
 class Admin::ItemsController < Admin::Base
+  before_action :login_admin
+  
   def index
     session.delete(:before_url)
     store_location

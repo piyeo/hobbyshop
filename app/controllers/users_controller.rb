@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :login_user, only: [:edit, :update,:destroy]
+  before_action :not_login_user, only: [:new, :create]
   before_action :correct_user,   only: [:edit, :update]
 
   def new
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "ホビーショップNSに登録してくれてありがとう！"
-      redirect_to @user
+      redirect_to :account
     else
       render 'new'
     end
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "アカウント情報を変更しました。"
-      redirect_to @user
+      redirect_to :account
     else
       render 'edit'
     end

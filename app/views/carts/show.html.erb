@@ -1,0 +1,16 @@
+<% @page_title = "ショッピングカート"%>
+<h1>カートの中身</h1>
+<% count_id = []%>
+<% @items.each do |item| %>
+  <% if !count_id.include?(item.id)%>
+    <%= link_to item.name, item %>
+    <%= item.price %>
+    <%= item.stock %>
+    <%= item.release %>
+    数量: <%= session[:cart_item].count(item.id) %>
+    <%= link_to "カートから削除する",:action => "show",:controller => "carts", :item_id => item.id%>
+    <% count_id.push(item.id)%>
+    <hr>
+  <% end %>
+<% end %>
+<%= link_to "注文する", "#" ,class: "btn btn-primary" %>

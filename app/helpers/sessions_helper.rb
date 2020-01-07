@@ -1,5 +1,12 @@
 module SessionsHelper
 
+  def current_cart
+    if session[:cart_item].nil?
+      @current_cart = Array.new
+      session[:cart_item] = @current_cart
+    end
+  end
+
   def current_admin
     if session[:admin_id]
       @current_admin = @current_admin || Admin.find_by(id: session[:admin_id])

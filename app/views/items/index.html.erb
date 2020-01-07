@@ -1,10 +1,12 @@
-<%= link_to "Sign up now!", signup_path, class: "btn btn-primary" %>
+<%= link_to "新規登録", signup_path, class: "btn btn-primary" %>
+<%= session[:cart_item] %>
 <%= paginate @items %>
 <% @items.each do |item| %>
   <%= link_to item.name, item %>
   <%= item.price %>
   <%= item.stock %>
   <%= item.release %>
+  <%= link_to "カートに追加する",:action => "add",:controller => "carts", :item_id => item.id%>
   <hr>
 <% end %>
 <%= paginate @items %>

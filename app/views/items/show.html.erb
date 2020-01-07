@@ -4,3 +4,4 @@
 <%= @item.price %>
 <%= @item.stock %>
 <%= @item.release %>
+<%= link_to "カートに追加する",:action => "add",:controller => "carts", :item_id => @item.id%>

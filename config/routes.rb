@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show]
   resources :users
   resource :account, only: [:show, :edit, :update]
+  resource :cart do
+    get "add", on: :member #カートの追加
+  end
 
   namespace :admin do
     root "top#index"
