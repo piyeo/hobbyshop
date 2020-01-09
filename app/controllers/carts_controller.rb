@@ -10,6 +10,7 @@ class CartsController < ApplicationController
       flash.now[:warning] = "カートに商品が追加されていません。"
     end
   end
+
   def add
     session[:cart_item] = session[:cart_item].push(params[:item_id].to_i)
     redirect_back_or root_url

@@ -33,7 +33,7 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <%= link_to("マイページ", :account, {class: "dropdown-item"}) %>
         <%= link_to("ユーザー設定", :edit_account, {class: "dropdown-item"}) %>
-        <%= link_to("注文履歴", "#", {class: "dropdown-item"}) %>
+        <%= link_to("注文履歴", :orders, {class: "dropdown-item"}) %>
         <%= link_to("レビュー", "#", {class: "dropdown-item"}) %>
         <div class="dropdown-divider"></div>
         <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>

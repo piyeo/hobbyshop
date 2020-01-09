@@ -1,5 +1,4 @@
 <%= link_to "新規登録", signup_path, class: "btn btn-primary" %>
-<%= session[:cart_item] %>
 <%= paginate @items %>
 <% @items.each do |item| %>
   <%= link_to item.name, item %>

@@ -1,0 +1,19 @@
+<% @page_title = "注文詳細" %>
+<%= paginate @orders %>
+<% @orders.each do |order|%>
+  <%= order.created_at.to_date %>
+  <%= order.pay %>
+  <%= order.isDeliver %>
+  <%= order.isCancel %>
+  <% total_price = 0%>
+  <% order.items.each do |item|%>
+    <% total_price += item.price%>
+  <% end %>
+  合計: <%=total_price%> 円
+  <% order.items.each do |item|%>
+    <li><%= item.name %></li>
+  <% end %>
+  <%= link_to "注文詳細", order%>
+  <hr>
+<% end %>
+<%= paginate @orders %>

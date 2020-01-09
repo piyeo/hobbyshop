@@ -13,4 +13,6 @@
     <hr>
   <% end %>
 <% end %>
-<%= link_to "注文する", "#" ,class: "btn btn-primary" %>
+<%if !(session[:cart_item].count == 0)%>
+  <%= link_to "注文する", new_order_path ,class: "btn btn-primary" %>
+<% end %>

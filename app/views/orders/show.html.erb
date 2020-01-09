@@ -1,0 +1,13 @@
+<% @page_title = "注文詳細" %>
+<%= @order.created_at.to_date %>
+<%= @order.pay %>
+<%= @order.isDeliver %>
+<%= @order.isCancel %>
+<% total_price = 0%>
+<% @order.items.each do |item|%>
+  <% total_price += item.price%>
+<% end %>
+合計: <%=total_price%> 円
+<% @order.items.each do |item|%>
+ <li><%= link_to item.name, item%></li>
+<% end %>

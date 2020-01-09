@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
   resources :users
+  resources :orders, only: [:new, :create,:index, :show]
   resource :account, only: [:show, :edit, :update]
   resource :cart do
     get "add", on: :member #カートの追加
