@@ -1,6 +1,9 @@
 <% @page_title = "注文詳細" %>
 <%= paginate @orders %>
 <% @orders.each do |order|%>
+  <% if order.isCancel %>
+    注文がキャンセルされています<br>
+  <% end %>
   <%= order.created_at.to_date %>
   <%= order.pay %>
   <%= order.isDeliver %>

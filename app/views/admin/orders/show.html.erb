@@ -2,6 +2,9 @@
 <% if @order.isCancel %>
   注文がキャンセルされています<br>
 <% end %>
+<%= @order.user.name %>
+<%= @order.user.postcode %>
+<%= @order.user.address %>
 <%= @order.created_at.to_date %>
 <%= @order.pay %>
 <%= @order.isDeliver %>
@@ -14,12 +17,4 @@
 <% @order.items.each do |item|%>
  <li><%= link_to item.name, item%></li>
 <% end %>
-<% if !@order.isCancel %>
-<%= link_to "注文をキャンセルする",
-          order_path(isCancel: true),
-          method: :patch,
-          isCancel: @order.isCancel,
-          data: { confirm: "本当に注文をキャンセルしてよろしいですか？" }
-%>
-<% end %><br>
-<%= link_to "注文一覧へ戻る", :orders%>
+<%= link_to "注文一覧へ戻る", :admin_orders%>

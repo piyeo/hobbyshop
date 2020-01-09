@@ -1,0 +1,39 @@
+<% @page_title = "注文詳細" %>
+<h1>注文一覧</h1>
+<%= paginate @orders %>
+<% @orders.each do |order|%>
+  <% if order.isCancel %>
+    注文がキャンセルされています<br>
+  <% end %>
+  <%= link_to order.user.name, order.user %>
+  <%= order.created_at.to_date %>
+  <%= order.pay %>
+  <%= order.isDeliver %>
+  <%= order.isCancel %>
+  <% total_price = 0%>
+  <% order.items.each do |item|%>
+    <% total_price += item.price%>
+  <% end %>
+  合計: <%=total_price%> 円
+  <% order.items.each do |item|%>
+    <li><%= item.name %></li>
+  <% end %>
+  <%= link_to "注文詳細", [:admin,order]%>
+  <% if order.isDeliver %>
+    <%= link_to "発送を中止する",
+              [:admin, order,isDeliver: false],
+              method: :patch,
+              class: 'fa fa-check-square-o',
+              isDeliver: order.isDeliver
+               %>
+  <% else %>
+  <%= link_to "発送する",
+            [:admin, order,isDeliver: true],
+            method: :patch,
+            class: 'fa fa-square-o',
+            isDeliver: order.isDeliver
+             %>
+  <% end %>
+  <hr>
+<% end %>
+<%= paginate @orders %>

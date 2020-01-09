@@ -38,4 +38,19 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+    if @order.update_attribute(:isCancel ,params[:isCancel])
+      flash[:success] = "注文をキャンセルしました。"
+      @order.items.each do |i|
+        item = Item.find(i.id)
+        item.stock += 1
+        item.save
+      end
+      redirect_to :orders
+    else
+      redirect_to :orders
+    end
+  end
+
 end
