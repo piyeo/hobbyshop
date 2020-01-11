@@ -20,6 +20,14 @@ class ApplicationController < ActionController::Base
 
     def not_login_user
       unless !is_login?
+        flash[:danger] = "ログアウトしてからやり直してください"
+        redirect_to root_url
+      end
+    end
+
+    def not_admin
+      unless !is_admin?
+        flash[:danger] = "ログアウトしてからやり直してください"
         redirect_to root_url
       end
     end

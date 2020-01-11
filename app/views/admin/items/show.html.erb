@@ -6,3 +6,16 @@
 <%= @item.price %>
 <%= @item.stock %>
 <%= @item.release %>
+<hr>
+<p>レビュー一覧</p>
+<%if @reviews == []%>
+レビューがありません
+<%end%>
+<% @reviews.each do |review|%>
+  ユーザー：<%= review.user.nickname%><br>
+  投稿日時：<%= review.created_at.to_date%><br>
+  評価：<%= review.score%><br>
+  内容<br><%= review.body%><br>
+  <%= link_to "削除する",admin_review_path(review),method: :delete,data: { confirm: "レビューを削除してもよろしいですか？"}%>
+  <br>
+<% end %>

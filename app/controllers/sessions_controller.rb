@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :not_admin
 
   def new
   end

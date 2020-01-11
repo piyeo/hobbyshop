@@ -5,3 +5,53 @@
 <%= @item.stock %>
 <%= @item.release %>
 <%= link_to "カートに追加する",:action => "add",:controller => "carts", :item_id => @item.id%>
+<hr>
+<p>レビュー一覧</p>
+<%if @reviews == []%>
+レビューがありません
+<%end%>
+<% @reviews.each do |review|%>
+  ユーザー：<%= review.user.nickname%><br>
+  投稿日時：<%= review.created_at.to_date%><br>
+  評価：<%= review.score%><br>
+  内容<br><%= review.body%><br>
+  <% if review.user == current_user %>
+    <%= link_to "削除する",review_path(review),method: :delete,data: { confirm: "レビューを削除してもよろしいですか？"}%>
+  <% end %>
+  <br>
+<% end %>
+<hr>
+<% if is_login? %>
+  <% if current_user.reviews.find_by(item_id: @item.id)%>
+    <h5>レビューを編集する(表示の際、あなたのnicknameが使用されます)</h5>
+    <%= form_for @review do |f| %>
+      <%= render 'shared/error_messages_item' %>
+
+      <%= f.label "評価" %>
+      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" %>
+
+      <%= f.label "内容" %>
+      <%= f.text_area :body , class: 'form-control' %>
+
+      <%= hidden_field_tag :item_id, @item.id %>
+
+      <%= f.submit "submit", class: "btn btn-primary",data: { confirm: "レビューを編集してもよろしいですか？"} %>
+    <% end %>
+  <% elsif  is_login? %>
+    <h5>レビューを投稿する(表示の際、あなたのnicknameが使用されます)</h5>
+    <%= form_for @review do |f| %>
+      <%= render 'shared/error_messages_item' %>
+
+      <%= f.label "評価" %>
+      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" %>
+
+      <%= f.label "内容" %>
+      <%= f.text_area :body , class: 'form-control' %>
+
+      <%= hidden_field_tag :item_id, @item.id %>
+
+      <%= f.submit "submit", class: "btn btn-primary",data: { confirm: "レビューを編集してもよろしいですか？"}%>
+    <% end %>
+    <hr>
+  <% end %>
+<% end %>

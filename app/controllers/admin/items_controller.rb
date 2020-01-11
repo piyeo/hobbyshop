@@ -1,6 +1,6 @@
 class Admin::ItemsController < Admin::Base
   before_action :login_admin
-  
+
   def index
     session.delete(:before_url)
     store_location
@@ -11,6 +11,7 @@ class Admin::ItemsController < Admin::Base
     session.delete(:before_url)
     store_location
     @item = Item.find(params[:id])
+    @reviews = @item.reviews.page(params[:page]).per(5)
   end
 
   def new

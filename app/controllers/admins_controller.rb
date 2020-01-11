@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  before_action :not_login_user
 
   def new
   end

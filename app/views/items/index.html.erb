@@ -2,6 +2,16 @@
 <%= paginate @items %>
 <% @items.each do |item| %>
   <%= link_to item.name, item %>
+  <%
+  if item.reviews != []
+    score = 0.0
+    item.reviews.each do |review|
+      score += review.score
+    end
+    score = (score / item.reviews.count).round(2)
+  end
+  %>
+  評価：<%= score %>
   <%= item.price %>
   <%= item.stock %>
   <%= item.release %>

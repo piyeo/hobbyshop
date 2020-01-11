@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
   resources :users
+  resources :reviews
   resources :orders, only: [:new, :create,:index, :show,:update]
   resource :account, only: [:show, :edit, :update]
   resource :cart do
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root "top#index"
     resources :items
+    resources :reviews, only: [:destroy]
     resources :orders
     post 'items/new' => 'items#create'
     patch 'items/:id/edit' => 'items#update'

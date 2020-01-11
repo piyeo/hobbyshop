@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :orders, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates :name, presence: true,
     format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/, allow_blank: true },
