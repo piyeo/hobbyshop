@@ -24,9 +24,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root "top#index"
     resources :items do
-      get "search", on: :collection       
+      get "search", on: :collection
     end
-    resources :reviews, only: [:destroy]
+    resources :reviews, only: [:destroy,:index]
     resources :orders
     post 'items/new' => 'items#create'
     patch 'items/:id/edit' => 'items#update'

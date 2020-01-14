@@ -1,21 +1,15 @@
-<% @page_title = @item.name %>
-<%= link_to "戻る", :admin_items %>
-<%= link_to "編集", [:edit, :admin, @item]%>
-<%= @item.name %>
-<%= @item.body %>
-<%= @item.price %>
-<%= @item.stock %>
-<%= @item.release %>
-<hr>
-<p>レビュー一覧</p>
+<% @page_title = "レビュー一覧"%>
 <%if @reviews == []%>
-レビューがありません
+  レビューがありません
 <%end%>
+<% paginate @reviews %>
 <% @reviews.each do |review|%>
+  <%= link_to review.item.name , review.item%><br>
   ユーザー：<%= review.user.name%><br>
   投稿日時：<%= review.created_at.to_date%><br>
   評価：<%= review.score%><br>
   内容<br><%= review.body%><br>
   <%= link_to "削除する",admin_review_path(review),method: :delete,data: { confirm: "レビューを削除してもよろしいですか？"}%>
-  <br>
+  <hr>
 <% end %>
+<% paginate @reviews %>

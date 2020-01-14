@@ -4,7 +4,19 @@
 <%= @item.price %>
 <%= @item.stock %>
 <%= @item.release %>
-<%= link_to "カートに追加する",:action => "add",:controller => "carts", :item_id => @item.id%>
+<%= form_tag :add_cart , method: :get, class: "search form-group form-inline" do |f| %>
+  <%= label_tag "　数量 :　"%>
+  <%
+  numbers = {}
+  (1..99).each do |i|
+    numbers.merge!(i.to_s => i)
+  end
+  numbers
+  %>
+  <%= select_tag "numbers",options_for_select(numbers),:selected => "1", class: "form-control",id: "exampleFormControlSelect1"%>
+  <%= hidden_field_tag :item_id, @item.id%>
+  <%= submit_tag "カートに追加する" , class: "btn btn-primary"%>
+<% end %>
 <hr>
 <p>レビュー一覧</p>
 <%if @reviews == []%>

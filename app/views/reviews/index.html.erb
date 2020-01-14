@@ -1,0 +1,13 @@
+<% @page_title = "レビュー一覧"%>
+<%if @reviews == []%>
+  レビューがありません
+<%end%>
+<% paginate @reviews %>
+<% @reviews.each do |review|%>
+  <%= link_to review.item.name , review.item%><br>
+  投稿日時：<%= review.created_at.to_date%><br>
+  評価：<%= review.score%><br>
+  内容<br><%= review.body%><br>
+  <hr>
+<% end %>
+<% paginate @reviews %>

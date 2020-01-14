@@ -19,20 +19,22 @@
     <li><%= item.name %></li>
   <% end %>
   <%= link_to "注文詳細", [:admin,order]%>
-  <% if order.isDeliver %>
-    <%= link_to "発送を中止する",
-              [:admin, order,isDeliver: false],
+  <% if !order.isCancel%>
+    <% if order.isDeliver %>
+      <%= link_to "発送を中止する",
+                [:admin, order,isDeliver: false],
+                method: :patch,
+                class: 'fa fa-check-square-o',
+                isDeliver: order.isDeliver
+                 %>
+    <% else %>
+    <%= link_to "発送する",
+              [:admin, order,isDeliver: true],
               method: :patch,
-              class: 'fa fa-check-square-o',
+              class: 'fa fa-square-o',
               isDeliver: order.isDeliver
                %>
-  <% else %>
-  <%= link_to "発送する",
-            [:admin, order,isDeliver: true],
-            method: :patch,
-            class: 'fa fa-square-o',
-            isDeliver: order.isDeliver
-             %>
+    <% end %>
   <% end %>
   <hr>
 <% end %>

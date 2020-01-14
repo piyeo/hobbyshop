@@ -1,6 +1,10 @@
 class ReviewsController < ApplicationController
   before_action :login_user, except: [:index]
 
+  def index
+    @reviews = current_user.reviews.order("created_at DESC").page(params[:page]).per(10)
+  end
+
   def create
     @review = Review.new(score: params[:review][:score],body: params[:review][:body])
     @review.user = current_user

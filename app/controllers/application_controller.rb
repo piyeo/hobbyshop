@@ -2,15 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :generate_cart
 
   include SessionsHelper
-
-#options_for_select　カテゴリー用
-  def category_choices
-    categories = {}
-    Category.all.each do |category|
-      categories.merge!(category.name => category.id)
-    end
-    categories
-  end
+  include ItemsHelper
 
 #管理者以外がログインしてきたらトップページへリダイレクト
   def login_admin
