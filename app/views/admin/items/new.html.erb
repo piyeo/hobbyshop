@@ -4,8 +4,8 @@
     <%= form_for [:admin, @item] ,url: 'new' do |f| %>
       <%= render 'shared/error_messages_item' %>
 
-      <%= f.label :category_id %>
-      <%= f.number_field :category_id ,class: 'form-control' %>
+      <%= f.label "カテゴリー"%>
+      <%= f.select :category_id ,options_for_select(category_choices),:selected => "1", class: "form-control"%>
 
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control'  %>

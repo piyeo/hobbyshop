@@ -7,4 +7,14 @@ class Item < ApplicationRecord
   validates :body, presence: true
   validates :stock, presence: true
   validates :price, presence: true
+
+  class << self
+    def search(query)
+      rel = order("name")
+      if query.present?
+        rel = rel.where("name LIKE ?", "%#{query}%")
+      end
+      rel
+    end
+  end
 end

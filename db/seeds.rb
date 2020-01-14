@@ -11,6 +11,8 @@ User.create(name: "山田次郎子", nickname: "Jiko", sex: 1,phone: "0803345336
 Admin.create(name: "admin", password: "123456", password_confirmation: "123456")
 
 Category.create(name: "ゲームソフト")
+Category.create(name: "CD/DVD")
+Category.create(name: "書籍")
 
 50.times do |n|
   category_id = 1

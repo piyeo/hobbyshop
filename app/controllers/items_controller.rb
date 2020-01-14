@@ -7,9 +7,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    store_location
+    @items = Item.search(params[:q]).where("category_id = #{params[:category_id]}").page(params[:page]).per(20)
+    @category_id = params[:category_id]  || Category.first.id
+    render "index"
+  end
+
   def index
     store_location
-    @items = Item.page(params[:page]).per(20)
+    @items = Item.order("name").page(params[:page]).per(20)
   end
 
   def show

@@ -1,17 +1,20 @@
 <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-warning mb-3">
   <a class="navbar-brand" href="/">ホビーショップNS</a>
   <div class="navbar-nav">
-    <div class="form-group form-inline">
-      <label for="exampleSelect1exampleFormControlSelect1">カテゴリ :　</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>ゲームソフト</option>
-        <option>CD/DVD</option>
-      </select>
-    </div>
-    <form class="form-inline">
-      <input class="form-control mr-sm-1" type="search">
-      <button class="btn btn-primary" type="submit">検索</button>
-    </form>
+
+    <% if is_admin?
+        item_hash = :search_admin_items
+      else
+        item_hash = :search_items
+      end
+    %>
+    <%= form_tag item_hash , method: :get, class: "search form-group form-inline" do |f| %>
+      <%= label_tag "　カテゴリ :　"%>
+      <%= select_tag "category_id",options_for_select(category_choices,@category_id),:selected => "1", class: "form-control",id: "exampleFormControlSelect1"%>
+      <%= text_field_tag "q", params[:q] ,class: "form-control mr-sm-1 form-inline"%>
+      <%= submit_tag "検索" , class: "btn btn-primary"%>
+    <% end %>
+
   </div>
   <ul class="ncollapse navbar-collapse justify-content-end navbar-nav">
     <%if is_admin?%>

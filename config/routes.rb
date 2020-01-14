@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   post   '/login_admin' => 'admins#create'
   delete '/logout_admin' => 'admins#destroy'
 
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show] do
+    get "search", on: :collection
+  end
   resources :users
   resources :reviews
   resources :orders, only: [:new, :create,:index, :show,:update]
@@ -21,7 +23,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "top#index"
-    resources :items
+    resources :items do
+      get "search", on: :collection       
+    end
     resources :reviews, only: [:destroy]
     resources :orders
     post 'items/new' => 'items#create'
