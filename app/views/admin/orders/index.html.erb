@@ -15,9 +15,15 @@
     <% total_price += item.price%>
   <% end %>
   合計: <%=total_price%> 円
+
+  <% count_id = []%>
   <% order.items.each do |item|%>
-    <li><%= item.name %></li>
+    <% if !count_id.include?(item.id)%>
+      <li><%= link_to item.name, [:admin, item] %> 数量：<%= order.items.where(id: item.id).count%></li>
+    <% end %>
+    <% count_id.push(item.id)%>
   <% end %>
+
   <%= link_to "注文詳細", [:admin,order]%>
   <% if !order.isCancel%>
     <% if order.isDeliver %>
