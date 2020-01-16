@@ -2,6 +2,7 @@ class Admin::ReviewsController < Admin::Base
   before_action :login_admin
 
   def index
+    store_location
     @reviews = Review.all.order("created_at DESC").page(params[:page]).per(10)
   end
 

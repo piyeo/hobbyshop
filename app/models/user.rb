@@ -6,8 +6,9 @@ class User < ApplicationRecord
 
   validates :name, presence: true,
     format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/, allow_blank: true },
-    length: { minimum: 2,maximum: 12, allow_blank: true }
-  validates :nickname, presence: true, length: {maximum: 20}
+    length: { minimum: 2,maximum: 15, allow_blank: true }
+  validates :nickname, presence: true,
+    length: {minimum: 2,maximum: 15, allow_blank: true}
   validates :postcode, presence: true,
     format: { with: /\A\d{3}[-]\d{4}\z/, allow_blank: true }
   validates :address, presence: true, length: {maximum: 50}

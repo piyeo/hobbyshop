@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :login_user, only: [:edit, :update]
+  before_action :login_user, only: [:show,:edit ,:update]
 
   def show
     @user = current_user

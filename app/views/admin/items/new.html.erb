@@ -1,28 +1,4 @@
 <% @page_title = "商品登録" %>
 <h1>商品登録</h1>
 <%= link_to "商品一覧に戻る", :admin_items %>
-    <%= form_for [:admin, @item] ,url: 'new' do |f| %>
-      <%= render 'shared/error_messages_item' %>
-
-      <%= f.label "カテゴリー"%>
-      <%= f.select :category_id ,options_for_select(category_choices),:selected => "1", class: "form-control"%>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control'  %>
-
-      <%= f.label :body %>
-      <%= f.text_area :body , class: 'form-control' %>
-
-      <%= f.label :stock %>
-      <%= f.number_field :stock ,class: 'form-control' %>
-
-      <%= f.label :price %>
-      <%= f.number_field :price ,class: 'form-control' %>
-
-      <div>
-        <%= f.label :release, "発売日"%>
-        <%= f.date_select :release,start_year: 1970, end_year: 2030,use_month_numbers: true , class: 'form-control' %>
-      </div>
-
-      <%= f.submit "add item", class: "btn btn-primary" %>
-    <% end %>
+<%= render partial: 'shared/item_form', locals: { isSelected: 1} %>

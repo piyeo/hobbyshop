@@ -6,3 +6,39 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+  activerecord:
+    models:
+      admin: 管理者
+      category: カテゴリー
+      item: 商品
+      order: 注文
+      review: レビュー
+      user: ユーザー
+    attributes:
+      admin:
+        name: ユーザー名
+        password: パスワード
+      category:
+        name: カテゴリー名
+      item:
+        name: 商品名
+        body: 商品説明
+        stock: 在庫
+        price: 値段
+        release: 発売日
+      order:
+        pay: 支払い方法
+      review:
+        score: 評価
+        body: 本文
+      user:
+        name: 氏名
+        nickname: ニックネーム
+        sex: 性別
+        phone: 電話番号
+        email: メールアドレス
+        birthday: 生年月日
+        postcode: 郵便番号
+        address: 住所
+        password: パスワード
+        password_confirmation: 確認用パスワード

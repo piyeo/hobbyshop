@@ -9,7 +9,11 @@ class ItemsController < ApplicationController
 
   def search
     store_location
-    @items = Item.search(params[:q]).where("category_id = #{params[:category_id]}").page(params[:page]).per(20)
+    if params[:category_id] == "0"
+      @items = Item.search(params[:q]).page(params[:page]).per(20)
+    else
+      @items = Item.search(params[:q]).where("category_id = #{params[:category_id]}").page(params[:page]).per(20)
+    end
     @category_id = params[:category_id]  || Category.first.id
     render "index"
   end

@@ -37,12 +37,11 @@
   <% if current_user.reviews.find_by(item_id: @item.id)%>
     <h5>レビューを編集する(表示の際、あなたのnicknameが使用されます)</h5>
     <%= form_for @review do |f| %>
-      <%= render 'shared/error_messages_item' %>
 
       <%= f.label "評価" %>
-      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" %>
+      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" ,class: "form-control"%>
 
-      <%= f.label "内容" %>
+      <%= f.label "本文(500文字以内)" %>
       <%= f.text_area :body , class: 'form-control' %>
 
       <%= hidden_field_tag :item_id, @item.id %>
@@ -52,17 +51,16 @@
   <% elsif  is_login? %>
     <h5>レビューを投稿する(表示の際、あなたのnicknameが使用されます)</h5>
     <%= form_for @review do |f| %>
-      <%= render 'shared/error_messages_item' %>
 
       <%= f.label "評価" %>
-      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" %>
+      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" ,class: "form-control"%>
 
-      <%= f.label "内容" %>
+      <%= f.label "本文(500文字以内)" %>
       <%= f.text_area :body , class: 'form-control' %>
 
       <%= hidden_field_tag :item_id, @item.id %>
 
-      <%= f.submit "submit", class: "btn btn-primary",data: { confirm: "レビューを編集してもよろしいですか？"}%>
+      <%= f.submit "submit", class: "btn btn-primary",data: { confirm: "レビューを投稿してもよろしいですか？"}%>
     <% end %>
     <hr>
   <% end %>

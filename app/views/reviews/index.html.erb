@@ -8,6 +8,7 @@
   投稿日時：<%= review.created_at.to_date%><br>
   評価：<%= review.score%><br>
   内容<br><%= review.body%><br>
+  <%= link_to "削除する",review_path(review),method: :delete,data: { confirm: "レビューを削除してもよろしいですか？"}%>
   <hr>
 <% end %>
 <% paginate @reviews %>

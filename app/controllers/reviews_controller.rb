@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   before_action :login_user, except: [:index]
 
   def index
+    store_location
     @reviews = current_user.reviews.order("created_at DESC").page(params[:page]).per(10)
   end
 
@@ -13,6 +14,9 @@ class ReviewsController < ApplicationController
       flash[:success] = "レビューを投稿しました。"
       redirect_back_or root_url
     else
+      @review.errors.full_messages.each do |e|
+        flash[:danger] = flash[:danger].to_s + e + "<br>"
+      end
       redirect_back_or root_url
     end
   end
@@ -23,6 +27,9 @@ class ReviewsController < ApplicationController
       flash[:success] = "レビューを編集しました。"
       redirect_back_or root_url
     else
+      @review.errors.full_messages.each do |e|
+        flash[:danger] = flash[:danger].to_s + e + "<br>"
+      end
       redirect_back_or root_url
     end
   end

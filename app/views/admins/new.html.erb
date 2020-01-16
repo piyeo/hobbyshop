@@ -2,10 +2,10 @@
 <h1>管理者ログイン</h1>
     <%= form_for(:admin, url: login_admin_path) do |f| %>
 
-      <%= f.label :name %>
+      <%= f.label "ユーザー名" %>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :password %>
+      <%= f.label "パスワード" %>
       <%= f.password_field :password, class: 'form-control' %>
 
       <%= f.submit "Log in", class: "btn btn-primary" %>
