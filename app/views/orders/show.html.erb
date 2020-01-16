@@ -4,8 +4,7 @@
 <% end %>
 <%= @order.created_at.to_date %>
 <%= @order.pay %>
-<%= @order.isDeliver %>
-<%= @order.isCancel %>
+<%= @order.isDeliver ? "発送済み" : "未発送"%>
 <% total_price = 0%>
 <% @order.items.each do |item|%>
   <% total_price += item.price%>

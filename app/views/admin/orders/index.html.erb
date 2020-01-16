@@ -1,5 +1,4 @@
-<% @page_title = "注文詳細" %>
-<h1>注文一覧</h1>
+<% @page_title = "注文一覧" %>
 <%= paginate @orders %>
 <% @orders.each do |order|%>
   <% if order.isCancel %>
@@ -8,8 +7,7 @@
   <%= link_to order.user.name, order.user %>
   <%= order.created_at.to_date %>
   <%= order.pay %>
-  <%= order.isDeliver %>
-  <%= order.isCancel %>
+  <%= order.isDeliver ? "発送済み" : "未発送"%>
   <% total_price = 0%>
   <% order.items.each do |item|%>
     <% total_price += item.price%>

@@ -4,9 +4,9 @@ class Admin::ItemsController < Admin::Base
   def search
     store_location
     if params[:category_id] == "0"
-      @items = Item.search(params[:q]).page(params[:page]).per(20)
+      @items = Item.search(params[:q]).page(params[:page]).per(9)
     else
-      @items = Item.search(params[:q]).where("category_id = #{params[:category_id]}").page(params[:page]).per(20)
+      @items = Item.search(params[:q]).where("category_id = #{params[:category_id]}").page(params[:page]).per(9)
     end
     @category_id = params[:category_id]  || Category.first.id
     render "index"
@@ -15,7 +15,7 @@ class Admin::ItemsController < Admin::Base
   def index
     session.delete(:before_url)
     store_location
-    @items = Item.order("name").page(params[:page]).per(20)
+    @items = Item.order("name").page(params[:page]).per(9)
   end
 
   def show
