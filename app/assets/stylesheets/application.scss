@@ -39,6 +39,16 @@ textarea {
   }
 }
 
+.card{
+  img{
+    width: 100%; height: auto;
+  }
+}
+
+a, a:visited, a:focus, a:hover {
+    text-decoration: none;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {

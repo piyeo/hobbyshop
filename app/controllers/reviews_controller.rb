@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(score: params[:review][:score],body: params[:review][:body])
+    @review = Review.new(review_params)
     @review.user = current_user
     @review.item = Item.find(params[:item_id])
     if @review.save
@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    if @review.update_attributes(score: params[:review][:score],body: params[:review][:body])
+    if @review.update_attributes(review_params)
       flash[:success] = "レビューを編集しました。"
       redirect_back_or root_url
     else
@@ -39,4 +39,11 @@ class ReviewsController < ApplicationController
     flash[:success] = "レビューを削除しました。"
     redirect_back_or root_url
   end
+
+private
+
+  def review_params
+    params.require(:review).permit(:score,:body)
+  end
+
 end

@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(pay: params[:order][:pay],isDeliver: false,isCancel: false)
+    @order = Order.new(order_params)
     @order.user = current_user
     if @order.save
       @items = session[:cart_item].map do |i|
@@ -52,5 +52,11 @@ class OrdersController < ApplicationController
       redirect_to :orders
     end
   end
+
+  private
+
+    def order_params
+      params.require(:order).permit(:pay)
+    end
 
 end
