@@ -1,4 +1,4 @@
 <% @page_title = "商品情報の変更" %>
 <h1>商品情報の変更</h1>
 <%= link_to "戻る", session[:before_url] %>
-<%= render partial: 'shared/item_form', locals: { isSelected: @item.category_id} %>
+<%= render partial: 'shared/item/item_form', locals: { isSelected: @item.category_id} %>

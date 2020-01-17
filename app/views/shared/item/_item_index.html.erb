@@ -1,0 +1,39 @@
+<div class="container d-flex justify-content-center">
+  <div class="row">
+    <div class="col-md-12">
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>
+
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+
+      <% @items.each do |item| %>
+      <%
+      score=0.0
+      if item.reviews != []
+        item.reviews.each do |review|
+          score += review.score
+        end
+        score = (score / item.reviews.count).round(2)
+      end
+      %>
+
+
+<%= render partial: 'shared/item/item_parts', locals: { item: item,bar: bar,actor: actor,score:score}%>
+
+    <% end %>
+
+    </div>
+  </div>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <div class="row">
+    <div class="col-md-12">
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>
