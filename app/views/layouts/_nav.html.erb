@@ -1,53 +1,61 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-warning mb-3">
+<nav class="navbar navbar-expand-xl navbar-dark bg-warning">
   <a class="navbar-brand" href="/">ホビーショップNS</a>
-  <div class="navbar-nav">
+  <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar1">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <% if is_admin?
-        item_hash = :search_admin_items
+  <div class="collapse navbar-collapse" id="navbar1">
+    <div class="navbar-nav">
+
+      <% if is_admin?
+      item_hash = :search_admin_items
       else
-        item_hash = :search_items
+      item_hash = :search_items
       end
-    %>
-    <%= form_tag item_hash , method: :get, class: "search form-group form-inline" do |f| %>
+      %>
+      <%= form_tag item_hash , method: :get, class: "search form-group form-inline" do |f| %>
       <%= label_tag "　カテゴリ :　"%>
       <%= select_tag "category_id",options_for_select(q_category_choices,@category_id),:selected => "0", class: "form-control",id: "exampleFormControlSelect1"%>
       <%= text_field_tag "q", params[:q] ,class: "form-control mr-sm-1 form-inline"%>
       <%= submit_tag "検索" , class: "btn btn-primary"%>
-    <% end %>
+      <% end %>
+    </div>
 
-  </div>
-  <ul class="ncollapse navbar-collapse justify-content-end navbar-nav">
-    <%if is_admin?%>
+    <ul class="navbar-nav ml-auto">
+      <%if is_admin?%>
       <li class="nav-item active">
         <%= link_to("管理ページ", :admin_root, {class: "nav-link"}) %>
       </li>
       <li class="nav-item active">
         <%= link_to "ログアウト", logout_admin_path ,method: :delete, class: "nav-link" %>
       </li>
-    <%else%>
-    <li class="nav-item active">
-      <%= link_to "カート(#{session[:cart_item].count})",:cart, class: "nav-link" %>
-    </li>
-    <% if is_login? %>
-    <div class="nav-item dropdown">
-      <button type="button" class="btn btn-secondary bg-warning btn-outline-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%=current_user.name + "さん"%>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <%= link_to("マイページ", :account, {class: "dropdown-item"}) %>
-        <%= link_to("ユーザー設定", :edit_account, {class: "dropdown-item"}) %>
-        <%= link_to("注文履歴", :orders, {class: "dropdown-item"}) %>
-        <%= link_to("レビュー", :reviews, {class: "dropdown-item"}) %>
-        <div class="dropdown-divider"></div>
-        <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
-        <%= link_to("その他", "#", {class: "dropdown-item"}) %>
+      <%else%>
+      <li class="nav-item active">
+        <%= link_to "カート(#{session[:cart_item].count})",:cart, class: "nav-link" %>
+      </li>
+      <% if is_login? %>
+      <div class="nav-item dropdown">
+        <button type="button" class="btn btn-secondary bg-warning btn-outline-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%=current_user.name + "さん"%>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to("マイページ", :account, {class: "dropdown-item"}) %>
+          <%= link_to("ユーザー設定", :edit_account, {class: "dropdown-item"}) %>
+          <%= link_to("注文履歴", :orders, {class: "dropdown-item"}) %>
+          <%= link_to("レビュー", :reviews, {class: "dropdown-item"}) %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
+          <%= link_to("その他", "#", {class: "dropdown-item"}) %>
+        </div>
       </div>
-    </div>
-    <% else %>
-    <li class="nav-item active">
-      <%= link_to("ログイン", login_path, {class: "nav-link"}) %>
-    </li>
-    <% end %>
-    <%end%>
-  </ul>
+      <% else %>
+      <li class="nav-item active">
+        <%= link_to("ログイン", login_path, {class: "nav-link"}) %>
+      </li>
+      <% end %>
+      <%end%>
+    </ul>
+
+  </div>
+
 </nav>

@@ -1,0 +1,39 @@
+<% if !is_login?%>
+<div class="text-center py-5 mb-3" style="	background-image: url(<%= image_path("game.jpg") %>);
+background-position: top left;	background-size: 100%; width: 100%; height: auto;
+background-repeat: no-repeat; background-size: cover;>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12 mb-2">
+            <h1 class="text-light">会員登録して通販を始めよう</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12"><a class="btn btn-outline-light w-25" href="/login">ログイン</a></div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mt-3"><a class="btn btn-outline-light w-25" href="/signup">新規登録</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% else %>
+<div class="py-5 text-center mb-4" style= "background-image: url(<%= image_path("game.jpg") %>);
+background-position: top left;	background-size: 100%; width: 100%; height: auto;
+background-repeat: no-repeat; background-size: cover;" >
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto col-md-12">
+        <h1 class="text-light">ホビーショップNSへようこそ</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

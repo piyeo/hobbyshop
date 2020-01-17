@@ -8,7 +8,7 @@ gem 'kaminari'
 gem 'rails-i18n'
 gem 'email_validator', '~> 1.6'
 gem 'faker', '~> 1.9.1'
-gem "font-awesome-rails" 
+gem "font-awesome-rails"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
