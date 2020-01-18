@@ -13,13 +13,3 @@ Admin.create(name: "admin", password: "123456", password_confirmation: "123456")
 Category.create(name: "ゲームソフト")
 Category.create(name: "CD/DVD")
 Category.create(name: "書籍")
-
-50.times do |n|
-  category_id = 1
-  name  = Faker::Game.title
-  body = Faker::Lorem.paragraphs
-  stock = 100
-  price = 5000
-  release = Date.today
-  Item.create(category_id: category_id,name: name,body: body,stock: stock,price: price,release: release)
-end
