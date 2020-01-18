@@ -1,54 +1,55 @@
-<div class="pt-4 pb-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-12 mb-2">
-              <h1 style="font-size: 35px;"><%= item.name %></h1>
-            </div>
+<div class="pt-4 pb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12 mb-2">
+            <h1 style="font-size: 35px;"><%= item.name %></h1>
           </div>
-          <div class="row">
-            <div class="col-md-6 d-flex justify-content-center">
-              <% if item.item_image.attached? %>
-                <%= image_tag item.item_image.variant(resize: "300x450")%>
-              <% else %>
-                <img class="card-img-top" style="width: 300px; height:450px;" src="https://pics.prcm.jp/99154cae7954c/73732896/jpeg/73732896.jpeg">
-              <% end %>
-            </div>
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-12 mt-4">
-                  <table class="table">
-                    <tbody>
-                      <tr class="thead-light">
-                        <th>
-                          <h4>商品詳細</h4>
-                        </th>
-                      </tr>
-                      <tr>
-                        <td>
-                          <h3>￥<%= item.price %></h3>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <h4>評価：<%= score %></h4>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <h4>在庫：<%= item.stock %></h4>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="d-flex flex-row-reverse">
-                          <h5>発売日：<%= item.release %></h5>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 d-flex justify-content-center">
+            <% if item.item_image.attached? %>
+            <%= image_tag item.item_image.variant(resize: "300x450")%>
+            <% else %>
+            <img class="card-img-top" style="width: 300px; height:450px;" src="https://pics.prcm.jp/99154cae7954c/73732896/jpeg/73732896.jpeg">
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12 mt-4">
+                <table class="table">
+                  <tbody>
+                    <tr class="thead-light">
+                      <th>
+                        <h4>商品詳細</h4>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h3>￥<%= item.price %></h3>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h4>評価：<%= score %></h4>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h4>在庫：<%= item.stock %></h4>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="d-flex flex-row-reverse">
+                        <h5>発売日：<%= item.release %></h5>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+            </div>
+            <% if !is_admin?%>
               <div class="row">
                 <div class="col-md-12" >
                   <%= form_tag :add_cart , method: :get, class: "search form-group form-inline" do |f| %>
@@ -56,7 +57,7 @@
                     <%
                     numbers = {}
                     (1..99).each do |i|
-                      numbers.merge!(i.to_s => i)
+                    numbers.merge!(i.to_s => i)
                     end
                     numbers
                     %>
@@ -66,30 +67,31 @@
                   <% end %>
                 </div>
               </div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div>
+</div>
+<div>
 
-    <div class="container">
-      <div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="bg-light p-2 py-3">商品の説明</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="py-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
         <div class="col-md-12">
-          <h4 class="bg-light p-2 py-3">商品の説明</h4>
+          <p class="lead"><%= item.body%></p>
         </div>
       </div>
     </div>
   </div>
-  <div class="py-1">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="col-md-12">
-            <p class="lead"><%= item.body%></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>

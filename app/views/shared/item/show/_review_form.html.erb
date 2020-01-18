@@ -11,13 +11,13 @@
 
       <%= f.label "評価" %>
       <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" ,class: "form-control"%>
-
+      <br>
       <%= f.label "本文(500文字以内)" %>
       <%= f.text_area :body , class: 'form-control' %>
 
       <%= hidden_field_tag :item_id, item.id %>
 
-      <%= f.submit "編集する", class: "btn btn-primary",data: { confirm: "レビューを編集してもよろしいですか？"} %>
+      <%= f.submit "編集する", class: "btn btn-primary mt-2",data: { confirm: "レビューを編集してもよろしいですか？"} %>
     <% end %>
     </div>
   <% elsif  is_login? %>
@@ -27,13 +27,13 @@
 
       <%= f.label "評価" %>
       <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" ,class: "form-control"%>
-
+      <br>
       <%= f.label "本文(500文字以内)" %>
       <%= f.text_area :body , class: 'form-control' %>
 
       <%= hidden_field_tag :item_id, item.id %>
 
-      <%= f.submit "投稿する", class: "btn btn-primary",data: { confirm: "レビューを投稿してもよろしいですか？"}%>
+      <%= f.submit "投稿する", class: "btn btn-primary mt-2",data: { confirm: "レビューを投稿してもよろしいですか？"}%>
     <% end %>
     </div>
   <% end %>
