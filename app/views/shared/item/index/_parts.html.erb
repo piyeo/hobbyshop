@@ -1,8 +1,13 @@
 <div class="col-lg-4 mb-3">
   <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <a href="<%=bar%><%=actor%>/items/<%=item.id%>" class="card text-center"> <img class="card-img-top" src="https://lh3.googleusercontent.com/npew9dDnrDUsZl3lrIzjGAUr2SGR6qC2XLteyiNSeAp2SumD-eE3cruubr5FunAWyq0=w300-h250" alt="Card image cap">
+    <div class="col-md-10 d-flex justify-content-center">
+      <a href="<%=bar%><%=actor%>/items/<%=item.id%>" class="card text-center" style="width: 300px; height:auto;">
+        <% if item.item_image.attached? %>
+          <%= image_tag item.item_image , class: "card-img-top"%>
+        <% else %>
+          <img class="card-img-top" src="https://lh3.googleusercontent.com/npew9dDnrDUsZl3lrIzjGAUr2SGR6qC2XLteyiNSeAp2SumD-eE3cruubr5FunAWyq0=w300-h250" alt="Card image cap">
+        <% end %>
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">

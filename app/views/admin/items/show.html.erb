@@ -1,21 +1,21 @@
 <% @page_title = @item.name %>
-<%= link_to "戻る", :admin_items %>
-<%= link_to "編集", [:edit, :admin, @item]%>
-<%= @item.name %>
-<%= @item.body %>
-<%= @item.price %>
-<%= @item.stock %>
-<%= @item.release %>
-<hr>
-<p>レビュー一覧</p>
-<%if @reviews == []%>
-レビューがありません
-<%end%>
-<% @reviews.each do |review|%>
-  ユーザー：<%= review.user.name%><br>
-  投稿日時：<%= review.created_at.to_date%><br>
-  評価：<%= review.score%><br>
-  内容<br><%= review.body%><br>
-  <%= link_to "削除する",admin_review_path(review),method: :delete,data: { confirm: "レビューを削除してもよろしいですか？"}%>
-  <br>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto my-3">
+      <%= link_to "商品を編集する", [:edit, :admin, @item] ,class: "btn btn-outline-primary"%>
+    </div>
+  </div>
+</div>
+
+<%
+score=0.0
+if @item.reviews != []
+  @item.reviews.each do |review|
+    score += review.score
+  end
+  score = (score / @item.reviews.count).round(2)
+end
+%>
+<%= render partial: 'shared/item/show/description', locals: { item: @item, score: score}%>
+<%= render partial: 'shared/item/show/review_form', locals: { item: @item, review: @review}%>
+<%= render partial: 'shared/item/show/review_admin', locals: { reviews: @reviews}%>

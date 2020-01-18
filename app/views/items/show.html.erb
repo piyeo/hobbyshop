@@ -1,67 +1,13 @@
 <% @page_title = @item.name %>
-<%= @item.name %>
-<%= @item.body %>
-<%= @item.price %>
-<%= @item.stock %>
-<%= @item.release %>
-<%= form_tag :add_cart , method: :get, class: "search form-group form-inline" do |f| %>
-  <%= label_tag "　数量 :　"%>
-  <%
-  numbers = {}
-  (1..99).each do |i|
-    numbers.merge!(i.to_s => i)
+<%
+score=0.0
+if @item.reviews != []
+  @item.reviews.each do |review|
+    score += review.score
   end
-  numbers
-  %>
-  <%= select_tag "numbers",options_for_select(numbers),:selected => "1", class: "form-control",id: "exampleFormControlSelect1"%>
-  <%= hidden_field_tag :item_id, @item.id%>
-  <%= submit_tag "カートに追加する" , class: "btn btn-primary"%>
-<% end %>
-<hr>
-<p>レビュー一覧</p>
-<%if @reviews == []%>
-レビューがありません
-<%end%>
-<% @reviews.each do |review|%>
-  ユーザー：<%= review.user.nickname%><br>
-  投稿日時：<%= review.created_at.to_date%><br>
-  評価：<%= review.score%><br>
-  内容<br><%= review.body%><br>
-  <% if review.user == current_user %>
-    <%= link_to "削除する",review_path(review),method: :delete,data: { confirm: "レビューを削除してもよろしいですか？"}%>
-  <% end %>
-  <br>
-<% end %>
-<hr>
-<% if is_login? %>
-  <% if current_user.reviews.find_by(item_id: @item.id)%>
-    <h5>レビューを編集する(表示の際、あなたのnicknameが使用されます)</h5>
-    <%= form_for @review do |f| %>
-
-      <%= f.label "評価" %>
-      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" ,class: "form-control"%>
-
-      <%= f.label "本文(500文字以内)" %>
-      <%= f.text_area :body , class: 'form-control' %>
-
-      <%= hidden_field_tag :item_id, @item.id %>
-
-      <%= f.submit "submit", class: "btn btn-primary",data: { confirm: "レビューを編集してもよろしいですか？"} %>
-    <% end %>
-  <% elsif  is_login? %>
-    <h5>レビューを投稿する(表示の際、あなたのnicknameが使用されます)</h5>
-    <%= form_for @review do |f| %>
-
-      <%= f.label "評価" %>
-      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" ,class: "form-control"%>
-
-      <%= f.label "本文(500文字以内)" %>
-      <%= f.text_area :body , class: 'form-control' %>
-
-      <%= hidden_field_tag :item_id, @item.id %>
-
-      <%= f.submit "submit", class: "btn btn-primary",data: { confirm: "レビューを投稿してもよろしいですか？"}%>
-    <% end %>
-    <hr>
-  <% end %>
-<% end %>
+  score = (score / @item.reviews.count).round(2)
+end
+%>
+<%= render partial: 'shared/item/show/description', locals: { item: @item, score: score}%>
+<%= render partial: 'shared/item/show/review_form', locals: { item: @item, review: @review}%>
+<%= render partial: 'shared/item/show/review_index', locals: { reviews: @reviews}%>

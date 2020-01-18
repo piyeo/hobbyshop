@@ -56,6 +56,6 @@ class Admin::ItemsController < Admin::Base
   private
 
   def item_params
-    params.require(:item).permit(:category_id,:name, :body,:stock,:price,:release)
+    params.require(:item).permit(:new_item_image,:remove_item_image,:category_id,:name, :body,:stock,:price,:release)
   end
 end

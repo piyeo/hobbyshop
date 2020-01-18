@@ -1,0 +1,44 @@
+<% if is_login? %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="bg-light p-2 py-3">レビュー投稿・編集<br></h4>
+      <div class="col-md-12">
+  <% if current_user.reviews.find_by(item_id: item.id)%>
+    <h5 class="lead">レビューを編集する(表示の際、あなたのnicknameが使用されます)</h5>
+    <div class="my-4">
+    <%= form_for review do |f| %>
+
+      <%= f.label "評価" %>
+      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" ,class: "form-control"%>
+
+      <%= f.label "本文(500文字以内)" %>
+      <%= f.text_area :body , class: 'form-control' %>
+
+      <%= hidden_field_tag :item_id, item.id %>
+
+      <%= f.submit "編集する", class: "btn btn-primary",data: { confirm: "レビューを編集してもよろしいですか？"} %>
+    <% end %>
+    </div>
+  <% elsif  is_login? %>
+    <h5 class="lead">レビューを投稿する(表示の際、あなたのnicknameが使用されます)</h5>
+    <div class="my-4">
+    <%= form_for review do |f| %>
+
+      <%= f.label "評価" %>
+      <%= f.select :score, [["1",1],["2",2],["3",3],["4",4],["5",5]],  :prompt => "選択してください" ,class: "form-control"%>
+
+      <%= f.label "本文(500文字以内)" %>
+      <%= f.text_area :body , class: 'form-control' %>
+
+      <%= hidden_field_tag :item_id, item.id %>
+
+      <%= f.submit "投稿する", class: "btn btn-primary",data: { confirm: "レビューを投稿してもよろしいですか？"}%>
+    <% end %>
+    </div>
+  <% end %>
+  </div>
+</div>
+</div>
+</div>
+<% end %>

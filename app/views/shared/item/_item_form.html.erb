@@ -16,6 +16,13 @@
   <%= f.label :price %>
   <%= f.number_field :price ,class: 'form-control' %>
 
+  <%= f.label :new_item_image %>
+  <%= f.file_field :new_item_image %>
+  <% if @item.item_image.attached?%>
+    <%= image_tag @item.item_image.variant(resize: "300x250")%>
+    <%= f.check_box :remove_item_image %>
+    <%= f.label :remove_item_image %>
+ <% end %>
   <div>
     <%= f.label :release, "発売日"%>
     <%= f.date_select :release,start_year: 1970, end_year: 2030,use_month_numbers: true , class: 'form-control' %>

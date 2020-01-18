@@ -1,10 +1,4 @@
-<div class="container d-flex justify-content-center">
-  <div class="row">
-    <div class="col-md-12">
-      <%= paginate @items %>
-    </div>
-  </div>
-</div>
+<%= render partial: 'shared/paginate', locals: { target: @items}%>
 
 <div class="py-5">
   <div class="container">
@@ -22,7 +16,7 @@
       %>
 
 
-<%= render partial: 'shared/item/item_parts', locals: { item: item,bar: bar,actor: actor,score:score}%>
+<%= render partial: 'shared/item/index/parts', locals: { item: item,bar: bar,actor: actor,score:score}%>
 
     <% end %>
 
@@ -30,10 +24,4 @@
   </div>
 </div>
 
-<div class="container d-flex justify-content-center">
-  <div class="row">
-    <div class="col-md-12">
-      <%= paginate @items %>
-    </div>
-  </div>
-</div>
+<%= render partial: 'shared/paginate', locals: { target: @items}%>

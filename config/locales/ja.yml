@@ -21,6 +21,8 @@ ja:
       category:
         name: カテゴリー名
       item:
+        new_item_image: 商品画像
+        remove_item_image: 画像を削除
         name: 商品名
         body: 商品説明
         stock: 在庫

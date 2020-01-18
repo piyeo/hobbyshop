@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="bg-light p-2 py-3">レビュー一覧</h4>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <% if reviews == [] %>
+    <p class="lead">レビューがありません</p>
+<% end %>
+</div>
+<%= render partial: 'shared/paginate', locals: { target: reviews}%>
+<% reviews.each do |review|%>
+<div class="py-1 pb-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-12">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  <h4><%= review.user.nickname%></h4>
+                  <h5 class="pt-1">評価：<%= "★" * review.score%></h5>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>
+                    <p class="lead"><%= review.body%></p>
+                  </h4>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h6 style="float: left;">投稿日：<%= review.created_at.to_date%></h6>
+                  <% if (review.user == current_user) %>
+                    <%= link_to "削除する", review_path(review),method: :delete,data: { confirm: "レビューを削除してもよろしいですか？"} ,
+                    style: "float: right;" , class: "btn btn-primary ml-2"%>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </div>
+</div>
+<% end %>
+<%= render partial: 'shared/paginate', locals: { target: reviews}%>

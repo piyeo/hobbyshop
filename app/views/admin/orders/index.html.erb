@@ -4,7 +4,7 @@
   <% if order.isCancel %>
     注文がキャンセルされています<br>
   <% end %>
-  <%= link_to order.user.name, order.user %>
+  <%= order.user.name %>
   <%= order.created_at.to_date %>
   <%= order.pay %>
   <%= order.isDeliver ? "発送済み" : "未発送"%>
