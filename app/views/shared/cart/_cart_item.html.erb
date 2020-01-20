@@ -1,0 +1,58 @@
+<% count_id = []%>
+<div class="container mt-3">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <tbody>
+              <tr class="table-borderless">
+                <th>商品</th>
+                <th class="px-0">価格</th>
+                <th class="px-0">数量</th>
+              </tr>
+              <% items.each do |item| %>
+              <% if !count_id.include?(item.id)%>
+              <tr>
+                <td>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <% if item.item_image.attached? %>
+                        <%= image_tag item.item_image.variant(resize: "100x120"),class: "img-fluid d-block"%>
+                      <% else %>
+                        <img class="img-fluid d-block" style="width: 100px; height:120px;" src="https://pics.prcm.jp/99154cae7954c/73732896/jpeg/73732896.jpeg">
+                      <% end %>
+                    </div>
+                    <div class="col-md-5">
+                      <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <p class="pt-3"><%= link_to item.name, item %></p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <%= link_to "削除する",:action => "show",:controller => "carts", :item_id => item.id,class: "btn btn-outline-primary"%>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </td>
+                <td class="pt-5">
+                  <p>￥<%= item.price %></p>
+                </td>
+                <td class="pt-5"><%= session[:cart_item].count(item.id) %></td>
+              </tr>
+              <% count_id.push(item.id)%>
+              <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>

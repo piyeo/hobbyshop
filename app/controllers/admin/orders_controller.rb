@@ -2,7 +2,9 @@ class Admin::OrdersController < Admin::Base
   before_action :login_admin
 
   def index
-    @orders = Order.page(params[:page]).per(5)
+    @orders1 = Order.where("(isDeliver = ?) AND (isCancel = ?)", false,false).order("created_at DESC")
+    @orders2 = Order.where("(isDeliver = ?) AND (isCancel = ?)", true,false).order("created_at DESC")
+    @orders3 = Order.where("isCancel = ?",true).order("created_at DESC")
   end
 
   def show

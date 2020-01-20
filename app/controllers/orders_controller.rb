@@ -2,7 +2,9 @@ class OrdersController < ApplicationController
   before_action :login_user
 
   def index
-    @orders = current_user.orders.page(params[:page]).per(5)
+    @orders1 = current_user.orders.where("(isDeliver = ?) AND (isCancel = ?)", false,false).order("created_at DESC")
+    @orders2 = current_user.orders.where("(isDeliver = ?) AND (isCancel = ?)", true,false).order("created_at DESC")
+    @orders3 = current_user.orders.where("isCancel = ?",true).order("created_at DESC")
   end
 
   def show
@@ -47,7 +49,7 @@ class OrdersController < ApplicationController
         item.stock += 1
         item.save
       end
-      redirect_to :orders
+      redirect_to @order
     else
       redirect_to :orders
     end

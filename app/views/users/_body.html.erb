@@ -1,7 +1,51 @@
-<%=@user.name%>
-<%=@user.nickname%>
-<%=@user.sex%>
-<%=@user.phone%>
-<%=@user.email%>
-<%=@user.postcode%>
-<%=@user.address%>
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="bg-light p-2 py-3">会員情報の確認</h4>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-12">
+      </div>
+      <div class="row">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container py-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-3 py-2"><b>お客様情報</b></h5>
+          <h5 class="mb-3 lead">名前：<%=@user.name%></h5>
+          <h5 class="mb-3 lead">ニックネーム：<%=@user.nickname%></h5>
+          <h5 class="mb-3 lead">性別：<%=@user.sex%></h5>
+          <h5 class="mb-3 lead">電話番号：<%=@user.phone%></h5>
+          <h5 class="mb-3 lead">メールアドレス：<%=@user.email%></h5>
+          <h5 class="mb-3 lead">郵便番号：<%=@user.postcode%></h5>
+          <h5 class="mb-4 lead">住所：<%=@user.address%></h5>
+          <a href="/account/edit" class="card-link">変更</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="bg-light p-2 py-3">メールアドレスの変更</h4>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="bg-light p-2 py-3">パスワードの再設定</h4>
+    </div>
+  </div>
+</div>

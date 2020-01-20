@@ -1,14 +1,50 @@
 <% @page_title = "レビュー一覧"%>
-<%if @reviews == []%>
-  レビューがありません
-<%end%>
-<% paginate @reviews %>
-<% @reviews.each do |review|%>
-  <%= link_to review.item.name , review.item%><br>
-  投稿日時：<%= review.created_at.to_date%><br>
-  評価：<%= review.score%><br>
-  内容<br><%= review.body%><br>
-  <%= link_to "削除する",review_path(review),method: :delete,data: { confirm: "レビューを削除してもよろしいですか？"}%>
-  <hr>
+<div class="col-md-12 mt-4">
+  <h1 style="font-size: 35px;">レビュー一覧</h1>
+</div>
+
+<div class="container">
+  <% if @reviews == [] %>
+    <p class="lead">レビューがありません</p>
 <% end %>
-<% paginate @reviews %>
+</div>
+<%= render partial: 'shared/paginate', locals: { target: @reviews}%>
+<% @reviews.each do |review|%>
+<div class="py-1 pb-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-12">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  <h4><%= link_to review.item.name , review.item%></h4>
+                  <h5 class="pt-1">評価：<%= "★" * review.score%></h5>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>
+                    <p class="lead"><%= review.body%></p>
+                  </h4>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h6 style="float: left;">投稿日：<%= review.created_at.to_date%></h6>
+                    <%= link_to "削除する", review_path(review),method: :delete,data: { confirm: "レビューを削除してもよろしいですか？"} ,
+                    style: "float: right;" , class: "btn btn-primary ml-2"%>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </div>
+</div>
+<% end %>
+<%= render partial: 'shared/paginate', locals: { target: @reviews}%>

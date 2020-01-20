@@ -1,23 +1,67 @@
 <% @page_title = "注文詳細" %>
-<% if @order.isCancel %>
-  注文がキャンセルされています<br>
-<% end %>
-<%= @order.user.name %>
-<%= @order.user.postcode %>
-<%= @order.user.address %>
-<%= @order.created_at.to_date %>
-<%= @order.pay %>
-<%= @order.isDeliver ? "発送済み" : "未発送"%>
-<% total_price = 0%>
-<% @order.items.each do |item|%>
-  <% total_price += item.price%>
-<% end %>
-合計: <%=total_price%> 円
-<% count_id = []%>
-<% @order.items.each do |item|%>
-  <% if !count_id.include?(item.id)%>
-    <li><%= link_to item.name, [:admin, item] %> 数量：<%= @order.items.where(id: item.id).count%></li>
-  <% end %>
-  <% count_id.push(item.id)%>
-<% end %>
-<%= link_to "注文一覧へ戻る", :admin_orders%>
+<%
+  pay_name = ""
+  case @order.pay
+  when 1 then
+    pay_name = "代引き"
+  when 2 then
+    pay_name = "銀行振込"
+  when 3 then
+    pay_name = "クレジット"
+  end
+%>
+<div class="col-md-12 mt-4">
+  <h1 style="font-size: 35px;">注文詳細</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-7"></div>
+    <div class="col-sm-5 mb-3">
+      <%= link_to "注文一覧に戻る", :admin_orders%>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="d-flex">
+    <div class="row col-md-12 d-inline-flex justify-content-center">
+      <div class="border p-3 ml-5">
+        <% if @order.isCancel %>
+          <p>注文がキャンセルされています</p>
+        <% end %>
+        <div class="col-md-12 py-2">
+          <h4>お届け先情報</h4>
+          <p class="pt-2">
+            <%= @order.user.name%>
+            <%= @order.user.postcode%>
+            <%= @order.user.address%>
+          </p>
+        </div>
+        <div class="col-md-12 pb-2">
+          <h4>発送状況</h4>
+          <p class="pt-2"><%= @order.isDeliver ? "発送済み" : "未発送"%></p>
+        </div>
+        <div class="col-md-12 pb-2">
+          <h4>決済方法</h4>
+          <p class="pt-2">
+            <%= pay_name%>
+          </p>
+        </div>
+        <div class="col-md-12 py-2">
+          <h4 class="pb-3">注文商品</h4>
+          <% count_id = []%>
+          <% @order.items.each do |item|%>
+            <% if !count_id.include?(item.id)%>
+              <p><%= link_to item.name, [:admin,item] %> 数量：<%= @order.items.where(id: item.id).count%></p>
+            <% end %>
+            <% count_id.push(item.id)%>
+          <% end %>
+          <% total_price = 0%>
+          <% @order.items.each do |item|%>
+            <% total_price += item.price%>
+          <% end %>
+          <h5 class="pt-2">請求額: <%=total_price%> 円</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
