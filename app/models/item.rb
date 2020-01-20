@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   before_save do
     if new_item_image
       self.item_image = new_item_image
-    else remove_item_image
+    elsif remove_item_image
       self.item_image.purge
     end
   end

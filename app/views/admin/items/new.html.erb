@@ -1,4 +1,8 @@
 <% @page_title = "商品登録" %>
-<h1>商品登録</h1>
-<%= link_to "商品一覧に戻る", :admin_items %>
-<%= render partial: 'shared/item/item_form', locals: { isSelected: 1} %>
+<div class="col-md-12 mt-4">
+  <h1 style="font-size: 35px;">商品登録</h1>
+</div>
+<div class="container mb-3">
+  <%= link_to "商品一覧に戻る", :admin_items %>
+</div>
+<%= render partial: 'shared/item/item_form', locals: { isSelected: 1 } %>

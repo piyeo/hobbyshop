@@ -1,32 +1,42 @@
-<%= form_for [:admin, @item] do |f| %>
-  <%= render 'shared/error_messages_item' %>
-
-  <%= f.label "カテゴリー"%>
-  <%= f.select :category_id ,options_for_select(category_choices,isSelected),:selected => "1", class: "form-control"%>
-  <br>
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control'  %>
-
-  <%= f.label :body %>
-  <%= f.text_area :body , class: 'form-control' %>
-
-  <%= f.label :stock %>
-  <%= f.number_field :stock ,class: 'form-control' %>
-
-  <%= f.label :price %>
-  <%= f.number_field :price ,class: 'form-control' %>
-
-  <%= f.label :new_item_image %>
-  <%= f.file_field :new_item_image %>
-  <% if @item.item_image.attached?%>
-    <%= image_tag @item.item_image.variant(resize: "300x250")%>
-    <%= f.check_box :remove_item_image %>
-    <%= f.label :remove_item_image %>
- <% end %>
-  <div>
-    <%= f.label :release, "発売日"%>
-    <%= f.date_select :release,start_year: 1970, end_year: 2030,use_month_numbers: true , class: 'form-control' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for [:admin, @item] do |f| %>
+        <%= render 'shared/error_messages_item' %>
+      <div class="form-group">
+        <%= f.label "カテゴリー"%>
+        <%= f.select :category_id ,options_for_select(category_choices,isSelected),:selected => "1", class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control'  %>
+      </div>
+      <div class="form-group">
+        <%= f.label :body %>
+        <%= f.text_area :body , class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :stock %>
+        <%= f.number_field :stock ,class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :price %>
+        <%= f.number_field :price ,class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.file_field :new_item_image %>
+        <% if @item.item_image.attached?%>
+          <%= image_tag @item.item_image.variant(resize: "300x250")%>
+          <%= f.check_box :remove_item_image %>
+          <%= f.label :remove_item_image %>
+       <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :release, "発売日"%><br>
+        <%= f.date_select :release,start_year: 1970, end_year: 2030,use_month_numbers: true , class: 'form-control' %>
+      </div>
+      <%= f.submit "登録する", class: "btn btn-primary mt-3" %>
+      <% end %>
+    </div>
   </div>
-
-  <%= f.submit "submit", class: "btn btn-primary" %>
-<% end %>
+</div>

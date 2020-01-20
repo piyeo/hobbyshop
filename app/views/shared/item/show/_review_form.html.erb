@@ -5,7 +5,7 @@
       <h4 class="bg-light p-2 py-3">レビュー投稿・編集<br></h4>
       <div class="col-md-12">
   <% if current_user.reviews.find_by(item_id: item.id)%>
-    <h5 class="lead">レビューを編集する(表示の際、あなたのnicknameが使用されます)</h5>
+    <h5 class="lead">レビューを編集する(表示の際、あなたのニックネームが使用されます)</h5>
     <div class="my-4">
     <%= form_for review do |f| %>
 
@@ -21,7 +21,7 @@
     <% end %>
     </div>
   <% elsif  is_login? %>
-    <h5 class="lead">レビューを投稿する(表示の際、あなたのnicknameが使用されます)</h5>
+    <h5 class="lead">レビューを投稿する(表示の際、あなたのニックネームが使用されます)</h5>
     <div class="my-4">
     <%= form_for review do |f| %>
 

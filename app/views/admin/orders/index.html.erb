@@ -41,7 +41,7 @@
         <ul>
           <% order.items.each do |item|%>
           <% if !count_id.include?(item.id)%>
-          <li class="pb-2"><%= link_to item.name, item %> 数量：<%= order.items.where(id: item.id).count%></li>
+          <li class="pb-2"><%= link_to item.name, [:admin,item] %> 数量：<%= order.items.where(id: item.id).count%></li>
           <% end %>
           <% count_id.push(item.id)%>
           <% end %>
@@ -94,7 +94,7 @@
         <ul>
           <% order.items.each do |item|%>
           <% if !count_id.include?(item.id)%>
-          <li class="pb-2"><%= link_to item.name, item %> 数量：<%= order.items.where(id: item.id).count%></li>
+          <li class="pb-2"><%= link_to item.name, [:admin,item] %> 数量：<%= order.items.where(id: item.id).count%></li>
           <% end %>
           <% count_id.push(item.id)%>
           <% end %>
