@@ -21,11 +21,7 @@
         <% end %>
         <% @orders1.each do |order|%>
         <%
-        total_price = 0
         pay_name = ""
-        order.items.each do |item|
-        total_price += item.price
-        end
         case order.pay
         when 1 then
         pay_name = "代引き"
@@ -36,7 +32,7 @@
         end
         %>
         <h5>注文日：<%= order.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
-        <p>支払い方法：<%= pay_name %>　合計: ￥<%=total_price%> </p>
+        <p>支払い方法：<%= pay_name %>　合計: ￥<%=order.totalprice%> </p>
         <% count_id = []%>
         <ul>
           <% order.items.each do |item|%>
@@ -58,11 +54,7 @@
         <% end %>
         <% @orders2.each do |order|%>
         <%
-        total_price = 0
         pay_name = ""
-        order.items.each do |item|
-        total_price += item.price
-        end
         case order.pay
         when 1 then
         pay_name = "代引き"
@@ -73,7 +65,7 @@
         end
         %>
         <h5>注文日：<%= order.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
-        <p>支払い方法：<%= pay_name %>　合計: ￥<%=total_price%> </p>
+        <p>支払い方法：<%= pay_name %>　合計: ￥<%=order.totalprice%> </p>
         <% count_id = []%>
         <ul>
           <% order.items.each do |item|%>
@@ -95,11 +87,7 @@
         <% end %>
         <% @orders3.each do |order|%>
         <%
-        total_price = 0
         pay_name = ""
-        order.items.each do |item|
-        total_price += item.price
-        end
         case order.pay
         when 1 then
         pay_name = "代引き"
@@ -110,7 +98,7 @@
         end
         %>
         <h5>注文日：<%= order.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
-        <p>支払い方法：<%= pay_name %>　合計: ￥<%=total_price%> </p>
+        <p>支払い方法：<%= pay_name %>　合計: ￥<%=order.totalprice%> </p>
         <% count_id = []%>
         <ul>
           <% order.items.each do |item|%>

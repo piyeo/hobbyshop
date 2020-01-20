@@ -39,13 +39,16 @@
             <%= f.radio_button :pay, 3 , class: "form-check-input"%>
             <%= f.label :pay_3, "銀行振込" ,class: "form-check-label" %>
           </div>
+          <%total_price = 0%>
+          <% @items.each do |item| %>
+           <%total_price += item.price%>
+          <% end %>
+          <%= f.hidden_field :totalprice, :value => total_price %>
         </div>
         <div class="col-md-12 py-2">
           <h4 class="pb-3">注文商品</h4>
           <% count_id = []%>
-          <%total_price = 0%>
           <% @items.each do |item| %>
-          <%total_price += item.price%>
           <% if !count_id.include?(item.id)%>
           <p><%=link_to item.name,item%></p>
           <p>￥<%= item.price %></p>

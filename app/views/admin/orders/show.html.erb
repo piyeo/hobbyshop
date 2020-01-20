@@ -55,11 +55,7 @@
             <% end %>
             <% count_id.push(item.id)%>
           <% end %>
-          <% total_price = 0%>
-          <% @order.items.each do |item|%>
-            <% total_price += item.price%>
-          <% end %>
-          <h5 class="pt-2">請求額: <%=total_price%> 円</h5>
+          <h5 class="pt-2">請求額: <%=@order.totalprice%> 円</h5>
         </div>
       </div>
     </div>
