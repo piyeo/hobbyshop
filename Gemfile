@@ -9,7 +9,7 @@ gem 'rails-i18n'
 gem 'email_validator', '~> 1.6'
 gem 'faker', '~> 1.9.1'
 gem "font-awesome-rails"
-gem 'cloudinary', require: false
+gem 'cloudinary'
 gem 'activestorage-cloudinary-service'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
