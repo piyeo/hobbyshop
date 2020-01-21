@@ -1,117 +1,41 @@
-<% @page_title = "注文詳細" %>
-<div class="container p-3">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a href="#order1" class="nav-link active" data-toggle="tab">未発送</a>
-    </li>
-    <li class="nav-item">
-      <a href="#order2" class="nav-link" data-toggle="tab">発送済み</a>
-    </li>
-    <li class="nav-item">
-      <a href="#order3" class="nav-link" data-toggle="tab">キャンセル済み</a>
-    </li>
-  </ul>
-
-  <!-- Tab panes-->
-  <div class="tab-content">
-    <div id="order1" class="tab-pane active">
-      <div class="container py-3">
-        <% if @orders1 == [] %>
-          <h4>注文がありません</h4>
-        <% end %>
-        <% @orders1.each do |order|%>
-        <%
-        pay_name = ""
-        case order.pay
-        when 1 then
-        pay_name = "代引き"
-        when 2 then
-        pay_name = "銀行振込"
-        when 3 then
-        pay_name = "クレジット"
-        end
-        %>
-        <h5>注文日：<%= order.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
-        <p>支払い方法：<%= pay_name %>　合計: ￥<%=order.totalprice%> </p>
-        <% count_id = []%>
-        <ul>
-          <% order.items.each do |item|%>
-          <% if !count_id.include?(item.id)%>
-          <li class="pb-2"><%= link_to item.name, item %> 数量：<%= order.items.where(id: item.id).count%></li>
-          <% end %>
-          <% count_id.push(item.id)%>
-          <% end %>
-        </ul>
-        <p class="pb-2"><%= link_to "注文詳細", order%></p>
-        <hr>
-        <% end %>
-      </div>
-    </div>
-    <div id="order2" class="tab-pane">
-      <div class="container py-3">
-        <% if @orders2 == [] %>
-          <h4>注文がありません</h4>
-        <% end %>
-        <% @orders2.each do |order|%>
-        <%
-        pay_name = ""
-        case order.pay
-        when 1 then
-        pay_name = "代引き"
-        when 2 then
-        pay_name = "銀行振込"
-        when 3 then
-        pay_name = "クレジット"
-        end
-        %>
-        <h5>注文日：<%= order.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
-        <p>支払い方法：<%= pay_name %>　合計: ￥<%=order.totalprice%> </p>
-        <% count_id = []%>
-        <ul>
-          <% order.items.each do |item|%>
-          <% if !count_id.include?(item.id)%>
-          <li class="pb-2"><%= link_to item.name, item %> 数量：<%= order.items.where(id: item.id).count%></li>
-          <% end %>
-          <% count_id.push(item.id)%>
-          <% end %>
-        </ul>
-        <p class="pb-2"><%= link_to "注文詳細", order%></p>
-        <hr>
-        <% end %>
-      </div>
-    </div>
-    <div id="order3" class="tab-pane">
-      <div class="container py-3">
-        <% if @orders3 == [] %>
-          <h4>注文がありません</h4>
-        <% end %>
-        <% @orders3.each do |order|%>
-        <%
-        pay_name = ""
-        case order.pay
-        when 1 then
-        pay_name = "代引き"
-        when 2 then
-        pay_name = "銀行振込"
-        when 3 then
-        pay_name = "クレジット"
-        end
-        %>
-        <h5>注文日：<%= order.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
-        <p>支払い方法：<%= pay_name %>　合計: ￥<%=order.totalprice%> </p>
-        <% count_id = []%>
-        <ul>
-          <% order.items.each do |item|%>
-          <% if !count_id.include?(item.id)%>
-          <li class="pb-2"><%= link_to item.name, item %> 数量：<%= order.items.where(id: item.id).count%></li>
-          <% end %>
-          <% count_id.push(item.id)%>
-          <% end %>
-        </ul>
-        <p class="pb-2"><%= link_to "注文詳細", order%></p>
-        <hr>
-        <% end %>
-      </div>
-    </div>
-  </div>
+<% @page_title = "注文一覧" %>
+<div class="col-md-12 mt-4">
+  <h1 style="font-size: 35px;">注文一覧</h1>
 </div>
+<%= render partial: 'shared/paginate', locals: { target: @orders}%>
+      <div class="container py-3">
+        <% if @orders == [] %>
+          <h4>注文がありません</h4>
+        <% end %>
+        <% @orders.each do |order|%>
+        <%
+        pay_name = ""
+        case order.pay
+        when 1 then
+        pay_name = "代引き"
+        when 2 then
+        pay_name = "銀行振込"
+        when 3 then
+        pay_name = "クレジット"
+        end
+        %>
+        <% if order.isCancel%>
+          <p>キャンセルされています</p>
+        <% end %>
+        <h5>注文日：<%= order.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
+        <p>支払い方法：<%= pay_name %>　合計: ￥<%=order.totalprice%> </p>
+        <% count_id = []%>
+        <ul>
+          <% order.items.each do |item|%>
+          <% if !count_id.include?(item.id)%>
+          <li class=""><%= link_to item.name, item %> 数量：<%= order.items.where(id: item.id).count%></li>
+          <% end %>
+          <% count_id.push(item.id)%>
+          <% end %>
+        </ul>
+        <p>発送状況：<%= order.isDeliver ? "発送済み" : "未発送" %></p>
+        <p class="pb-2"><%= link_to "注文詳細", order%></p>
+        <hr>
+        <% end %>
+      </div>
+<%= render partial: 'shared/paginate', locals: { target: @orders}%>

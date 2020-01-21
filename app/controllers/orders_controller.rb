@@ -2,9 +2,7 @@ class OrdersController < ApplicationController
   before_action :login_user
 
   def index
-    @orders1 = current_user.orders.where("(isDeliver = ?) AND (isCancel = ?)", false,false).order("created_at DESC")
-    @orders2 = current_user.orders.where("(isDeliver = ?) AND (isCancel = ?)", true,false).order("created_at DESC")
-    @orders3 = current_user.orders.where("isCancel = ?",true).order("created_at DESC")
+    @orders = current_user.orders.order("created_at DESC").page(params[:page]).per(5)
   end
 
   def show
