@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-md-6 d-flex justify-content-center">
             <% if item.item_image.attached? %>
-            <%= image_tag item.item_image.variant(resize: "300x450")%>
+            <%= image_tag item.item_image,size: "350x350"%>
             <% else %>
             <img class="card-img-top" style="width: 300px; height:450px;" src="https://pics.prcm.jp/99154cae7954c/73732896/jpeg/73732896.jpeg">
             <% end %>

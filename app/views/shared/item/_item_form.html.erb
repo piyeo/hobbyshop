@@ -26,7 +26,7 @@
       <div class="form-group">
         <%= f.file_field :new_item_image %>
         <% if @item.item_image.attached?%>
-          <%= image_tag @item.item_image.variant(resize: "300x250")%>
+          <%= image_tag @item.item_image,size: '300x250'%>
           <%= f.check_box :remove_item_image %>
           <%= f.label :remove_item_image %>
        <% end %>
