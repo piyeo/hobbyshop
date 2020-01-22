@@ -25,7 +25,8 @@ class Item < ApplicationRecord
     def search(query)
       rel = order("name")
       if query.present?
-        rel = rel.where("name LIKE ?", "%#{query}%")
+        items = Item.arel_table
+        rel = rel.where(items[:name].matches("%#{query}%"))
       end
       rel
     end
