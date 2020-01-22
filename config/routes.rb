@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get    '/login_admin' => 'admins#new'
   post   '/login_admin' => 'admins#create'
   delete '/logout_admin' => 'admins#destroy'
+  get  '/account/edit' => 'accounts#edit'
+  patch  '/account' => 'accounts#update'
+  delete  '/account' => 'accounts#destroy'
 
   resources :items, only: [:index, :show] do
     get "search", on: :collection

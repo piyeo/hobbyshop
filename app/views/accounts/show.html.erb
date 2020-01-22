@@ -3,6 +3,6 @@
 <%= render "users/body" %>
 
 <div class="container mt-5">
-  <%= link_to "退会する", @user, method: :delete,
+  <%= link_to "退会する", account_path, method: :delete,
                                   data: { confirm: "本当によろしいですか？(退会するとアカウント情報、注文履歴などすべての情報が削除されます。)" } %>
 </div>
