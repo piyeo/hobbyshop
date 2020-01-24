@@ -6,3 +6,6 @@
 　　<%= link_to "商品詳細へ戻る", [:admin, @item] %>
 </div>
 <%= render partial: 'shared/item/item_form', locals: { isSelected: @item.category_id} %>
+<div class="container mt-3">
+  <%= link_to "商品を削除する",admin_item_path(@item), method: :delete ,class: "mt-4 btn btn-outline-danger",data: { confirm: "本当に商品を削除しますか？"} %>
+</div>

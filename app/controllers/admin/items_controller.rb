@@ -33,7 +33,7 @@ class Admin::ItemsController < Admin::Base
     @item = Item.new(item_params)
     if @item.save
       flash[:success] = "商品を登録しました。"
-      redirect_to :admin_items
+        redirect_to :admin_items
     else
       render 'new'
     end
@@ -51,6 +51,12 @@ class Admin::ItemsController < Admin::Base
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    Item.find(params[:id]).destroy
+    flash[:success] = "商品を削除しました。"
+    redirect_to :admin_items
   end
 
   private

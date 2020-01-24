@@ -6,8 +6,18 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :body, presence: true
-  validates :stock, presence: true
-  validates :price, presence: true
+  validates :stock, presence: true,
+      numericality: {
+        only_integer: true,
+        greater_than: 0,
+        allow_blank: true
+      }
+  validates :price, presence: true,
+    numericality: {
+      only_integer: true,
+      greater_than: 0,
+      allow_blank: true
+    }
 
   attribute :new_item_image
   attribute :remove_item_image, :boolean
