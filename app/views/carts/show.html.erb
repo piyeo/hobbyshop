@@ -4,7 +4,7 @@
 </div>
 <%if !(session[:cart_item] == {})%>
   <%= render partial: 'shared/cart/cart_item' %>
+  <div class="container d-flex justify-content-center">
+      <%= link_to "注文する", new_order_path ,class: "btn btn-primary" %>
+  </div>
 <% end %>
-<div class="container d-flex justify-content-center">
-    <%= link_to "注文する", new_order_path ,class: "btn btn-primary" %>
-</div>

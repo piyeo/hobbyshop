@@ -1,5 +1,13 @@
 class CartsController < ApplicationController
   def show
+      session[:cart_item].each do |item_id,numbers| #カートの商品が存在しているかチェック
+        begin
+          error_id = item_id
+          item = Item.find(item_id)
+        rescue
+          session[:cart_item].delete(error_id)
+        end
+      end
     if params[:item_id] #カートからアイテム削除
       session[:cart_item].delete(params[:item_id])
     end
