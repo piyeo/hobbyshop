@@ -41,8 +41,10 @@
           </div>
           <%total_price = 0%>
           <% session[:cart_item].each do |item_id,numbers| %>
-            <% item = Item.find(item_id)%>
-            <%total_price += item.price%>
+            <% numbers.times do %>
+              <% item = Item.find(item_id)%>
+              <%total_price += item.price%>
+            <% end %>
           <% end %>
           <%= f.hidden_field :totalprice, :value => total_price %>
         </div>

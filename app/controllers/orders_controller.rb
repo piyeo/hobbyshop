@@ -13,15 +13,19 @@ class OrdersController < ApplicationController
   end
 
   def new
-    # @items = session[:cart_item].map do |i|
-    #   Item.find(i)
-    # end
+    store_location
     @order = Order.new
   end
 
   def create
     @order = Order.new(order_params)
     @order.user = current_user
+    session[:cart_item].each do |item_id,numbers|
+      if Item.find(item_id).stock < numbers
+        flash[:danger] = "在庫より多い数は購入できません。"
+        redirect_back_or :root and return
+      end
+    end
     if @order.save
       session[:cart_item].each do |item_id,numbers|
         item = Item.find(item_id)
@@ -31,12 +35,6 @@ class OrdersController < ApplicationController
           item.save
         }
       end
-      # @items = session[:cart_item].map do |i|
-      #   @order.items << Item.find(i)
-      #   item = Item.find(i)
-      #   item.stock -= 1
-      #   item.save
-      # end
       session[:cart_item] = {}
       flash[:success] = "商品を購入しました。"
       redirect_to order_path(@order)
