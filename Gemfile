@@ -7,8 +7,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'rails-i18n'
 gem 'email_validator', '~> 1.6'
-gem 'faker', '~> 1.9.1'
-gem "font-awesome-rails"
+#gem 'faker', '~> 1.9.1'
 gem 'cloudinary'
 gem 'activestorage-cloudinary-service'
 

@@ -5,7 +5,7 @@ if @item.reviews != []
   @item.reviews.each do |review|
     score += review.score
   end
-  score = (score / @item.reviews.count).round(2)
+  score = (score / @item.reviews.count).round(1)
 end
 %>
 <%= render partial: 'shared/item/show/description', locals: { item: @item, score: score}%>
