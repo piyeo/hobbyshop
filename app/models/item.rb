@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   validates :stock, presence: true,
       numericality: {
         only_integer: true,
-        greater_than: 0,
+        greater_than_or_equal_to: 0,
         allow_blank: true
       }
   validates :price, presence: true,
