@@ -1,9 +1,10 @@
 module SessionsHelper
 
-#初めてアクセスしたらカートを生成する
+#カートを生成する
   def generate_cart
     if session[:cart_item].nil?
-      @current_cart = Array.new
+      # @current_cart = Array.new
+      @current_cart = {}
       session[:cart_item] = @current_cart
     end
   end

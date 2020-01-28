@@ -13,9 +13,9 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @items = session[:cart_item].map do |i|
-      Item.find(i)
-    end
+    # @items = session[:cart_item].map do |i|
+    #   Item.find(i)
+    # end
     @order = Order.new
   end
 
@@ -23,13 +23,21 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     if @order.save
-      @items = session[:cart_item].map do |i|
-        @order.items << Item.find(i)
-        item = Item.find(i)
-        item.stock -= 1
-        item.save
+      session[:cart_item].each do |item_id,numbers|
+        item = Item.find(item_id)
+        numbers.times{
+          @order.items << item
+          item.stock -= 1
+          item.save
+        }
       end
-      session[:cart_item] = []
+      # @items = session[:cart_item].map do |i|
+      #   @order.items << Item.find(i)
+      #   item = Item.find(i)
+      #   item.stock -= 1
+      #   item.save
+      # end
+      session[:cart_item] = {}
       flash[:success] = "商品を購入しました。"
       redirect_to order_path(@order)
     else

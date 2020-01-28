@@ -2,9 +2,9 @@
 <div class="col-md-12 mt-4">
   <h1 style="font-size: 35px;">カート一覧</h1>
 </div>
-<%if !(session[:cart_item].count == 0)%>
-<%= render partial: 'shared/cart/cart_item', locals: { items: @items}%>
-<div class="container d-flex justify-content-end">
-    <%= link_to "注文する", new_order_path ,class: "btn btn-primary" %>
+<%if !(session[:cart_item] == {})%>
+  <%= render partial: 'shared/cart/cart_item' %>
 <% end %>
+<div class="container d-flex justify-content-center">
+    <%= link_to "注文する", new_order_path ,class: "btn btn-primary" %>
 </div>

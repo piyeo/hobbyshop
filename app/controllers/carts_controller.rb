@@ -1,26 +1,31 @@
 class CartsController < ApplicationController
   def show
-    if params[:item_id]
-      session[:cart_item].delete(params[:item_id].to_i)
+    if params[:item_id] #カートからアイテム削除
+      session[:cart_item].delete(params[:item_id])
     end
-    @items = session[:cart_item].map do |i|
-      Item.find(i)
+    if params[:number] #カートの商品の数量変更
+      id = params[:id]
+      begin
+        if params[:number].to_i < 1 || params[:number].to_i > 99
+          raise
+        end
+        session[:cart_item][id] = params[:number].to_i
+      rescue
+        flash.now[:danger] = "1〜99までの個数を指定してください。"
+      end
     end
-    if session[:cart_item].count == 0
+    if session[:cart_item] == {}
       flash.now[:warning] = "カートに商品が追加されていません。"
     end
   end
 
   def add
-    cart_item_number = session[:cart_item].count(params[:item_id].to_i)
-    if (Item.find(params[:item_id]).stock - cart_item_number) > params[:numbers].to_i
-      params[:numbers].to_i.times do |i|
-        session[:cart_item] = session[:cart_item].push(params[:item_id].to_i)
+      if session[:cart_item].key?(params[:item_id])
+        session[:cart_item][params[:item_id]] += params[:numbers].to_i
+      else
+        session[:cart_item][params[:item_id]] = params[:numbers].to_i
       end
       flash[:success] = "カートに商品を追加しました。"
-    else
-      flash[:danger] = "カートに商品を追加できませんでした。"
-    end
-    redirect_back_or root_url
+      redirect_back_or root_url
   end
 end

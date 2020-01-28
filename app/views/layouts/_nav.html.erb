@@ -31,7 +31,13 @@
       </li>
       <%else%>
       <li class="nav-item active">
-        <%= link_to "カート(#{session[:cart_item].count})",:cart, class: "nav-link" %>
+        <%
+          cart_sum = 0
+          session[:cart_item].each do |item_id,numbers|
+            cart_sum += numbers
+          end
+        %>
+        <%= link_to "カート(#{cart_sum})",:cart, class: "nav-link" %>
       </li>
       <% if is_login? %>
       <div class="nav-item dropdown">
