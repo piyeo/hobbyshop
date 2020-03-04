@@ -21,7 +21,7 @@ gem 'sqlite3', group: :development
 gem 'pg', group: :production
 
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
